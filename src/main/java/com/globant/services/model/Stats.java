@@ -37,7 +37,10 @@ public class Stats implements Serializable  {
 		return ratio;
 	}
 	public void setRatio() {
-		this.ratio =count_successful_escape/count_unsuccessful_escape;
+		if(count_successful_escape==0)
+			this ratio=0;
+		else
+			this.ratio =count_successful_escape/count_unsuccessful_escape;
 	}
 
 
