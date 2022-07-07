@@ -12,18 +12,36 @@ public class StatsServiceImpl implements StatsService  {
 StatsRepository stats;
 
 public void saveSuccessful_escape(){
+	try{
 	Stats aux=stats.findById((long) 1).orElse(null);
 	aux.setCount_successful_escape(aux.getCount_successful_escape()+1);
 	aux.setRatio();
 	stats.save(aux);
+	}
+	catch(Exception e){
+		new Stats aux=new Stats();
+		aux.setCount_unsuccessful_escape(1);
+		aux.setCount_successful_escape(0);
+		aux.setRatio();
+		stats.save(aux);
+	}
 }
 
 @Override
 public void saveUnSuccessful_escape() {
+	try{	
 	Stats aux=stats.findById((long) 1).orElse(null);
 	aux.setCount_unsuccessful_escape(aux.getCount_unsuccessful_escape()+1);
 	aux.setRatio();
 	stats.save(aux);
+	}
+	catch(Exception e){
+		new Stats aux=new Stats();
+		aux.setCount_unsuccessful_escape(1);
+		aux.setCount_successful_escape(0);
+		aux.setRatio();
+		stats.save(aux);
+	}
 }
 
 @Override
